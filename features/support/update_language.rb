@@ -1,8 +1,8 @@
 module Cucumber
   def self.update_language(lang, values)
     Cucumber::LANGUAGES[lang].merge!(values)
-    Cucumber.instance_eval("@lang = nil") # force to reload parser
-    Cucumber.load_language(lang)
+    Cucumber::Parser::NaturalLanguage.languages.delete "ja"
+    Cucumber::Cli::Main.step_mother.load_natural_language 'ja'
   end
 end
 
